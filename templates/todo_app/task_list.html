@@ -30,7 +30,7 @@
     <p style="font-size: 80%; color: grey;">
       <strong>Created: {{ task.created_at|date:"F d, Y H:i" }}</strong>
       {% if task.deadline %}
-        <span style="color: red;">
+        <span style="color: maroon;">
           <strong>Deadline: {{ task.deadline|date:"F d, Y H:i" }}</strong>
         </span>
       {% endif %}
