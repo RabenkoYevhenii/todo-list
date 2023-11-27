@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>TODO list</h1>
+  {% for task in task_list %}
+    <p>
+      <strong>
+        {{ task.content }} - <font color="red">{% if task.is_done %}Done{% else %}Not Done{% endif %}</font>
+      </strong>
+    </p>
+    <p>
+      Created: {{ task.created_at }}
+    </p>
+    <p>
+      Tags: {% for tag in task.tags.all %}{{ tag.name }}{% endfor %}
+    </p>
+    <br><hr style="background-color: lightgrey; height: 1px; border: none;">
+  {% endfor %}
+{% endblock %}
