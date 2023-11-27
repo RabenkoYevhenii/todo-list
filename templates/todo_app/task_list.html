@@ -10,15 +10,29 @@
   {% for task in task_list %}
     <p>
       <strong>
-        {{ task.content }} - <font color="red">{% if task.is_done %}Done{% else %}Not Done{% endif %}</font>
+        {{ task.content }} -
+        {% if task.is_done %}
+          <span style="color: green;">Done</span>
+        {% else %}
+          <span style="color: red;">Not Done</span>
+        {% endif %}
       </strong>
     </p>
-    <p>
-      Created: {{ task.created_at }}
+    <p style="font-size: 80%; color: grey;">
+      <strong>Created: {{ task.created_at|date:"F d, Y H:i" }}</strong>
+      {% if task.deadline %}
+        <span style="color: red;">
+          <strong>Deadline: {{ task.deadline|date:"F d, Y H:i" }}</strong>
+        </span>
+      {% endif %}
     </p>
     <p>
       Tags: {% for tag in task.tags.all %}{{ tag.name }}{% endfor %}
+      <span class="ml-2">
+        <a href="{% url 'todo_list:task-update' pk=task.id %}" style="text-decoration: none;">Update</a>
+        <a href="{% url 'todo_list:task-delete' pk=task.id %}" style="text-decoration: none;">Delete</a>
+      </span>
     </p>
-    <br><hr style="background-color: lightgrey; height: 1px; border: none;">
+    <br><hr style="background-color: darkgrey; height: 2px; border: none;">
   {% endfor %}
 {% endblock %}
