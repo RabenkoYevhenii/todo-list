@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from todo_app.views import TaskListView, TagListView
+from todo_app.views import TaskListView, TagListView, TaskCreateView
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("__debug__/", include("debug_toolbar.urls")),
-    path("", include("todo_app.urls", namespace="todo_app")),
+    path("", TaskListView.as_view(), name="task-list"),
+    path("create/", TaskCreateView.as_view(), name="task-create"),
+    path("tags/", TagListView.as_view(), name="tag-list"),
 ]
+
+app_name = "todo_list"
