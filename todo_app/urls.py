@@ -23,7 +23,8 @@ from todo_app.views import (
     TaskCreateView,
     TagCreateView,
     TaskUpdateView,
-    TaskDeleteView
+    TaskDeleteView,
+    TaskToggleButton
 )
 
 urlpatterns = [
@@ -31,6 +32,7 @@ urlpatterns = [
     path("create/", TaskCreateView.as_view(), name="task-create"),
     path("<int:pk>/update/", TaskUpdateView.as_view(), name="task-update"),
     path("<int:pk>/delete/", TaskDeleteView.as_view(), name="task-delete"),
+    path('tasks/<int:pk>/toggle/', TaskToggleButton.as_view(), name='toggle-task-status'),
     path("tags/", TagListView.as_view(), name="tag-list"),
     path("tags/create", TagCreateView.as_view(), name="tag-create"),
 ]

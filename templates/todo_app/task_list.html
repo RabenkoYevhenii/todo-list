@@ -8,16 +8,25 @@
     </a>
   </div>
   {% for task in task_list %}
-    <p>
-      <strong>
-        {{ task.content }} -
+        <div class="d-flex justify-content-between align-items-center">
+      <p>
+        <strong>
+          {{ task.content }} -
+          {% if task.is_done %}
+            <span style="color: green;">Done</span>
+          {% else %}
+            <span style="color: red;">Not Done</span>
+          {% endif %}
+        </strong>
+      </p>
+      <a href="{% url 'todo_list:toggle-task-status' pk=task.id %}" class="btn {% if task.is_done %}btn-secondary{% else %}btn-success{% endif %}">
         {% if task.is_done %}
-          <span style="color: green;">Done</span>
+          Undo
         {% else %}
-          <span style="color: red;">Not Done</span>
+          Complete
         {% endif %}
-      </strong>
-    </p>
+      </a>
+    </div>
     <p style="font-size: 80%; color: grey;">
       <strong>Created: {{ task.created_at|date:"F d, Y H:i" }}</strong>
       {% if task.deadline %}
@@ -27,7 +36,7 @@
       {% endif %}
     </p>
     <p>
-      Tags: {% for tag in task.tags.all %}{{ tag.name }}{% endfor %}
+      Tags: {% for tag in task.tags.all %}{{ tag.name }} {% endfor %}
       <span class="ml-2">
         <a href="{% url 'todo_list:task-update' pk=task.id %}" style="text-decoration: none;">Update</a>
         <a href="{% url 'todo_list:task-delete' pk=task.id %}" style="text-decoration: none;">Delete</a>
