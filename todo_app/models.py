@@ -21,4 +21,4 @@ class Task(models.Model):
         ]
 
     def __str__(self):
-        return f"{self.content} - {'Done' if self.is_done else 'Not Done'}"
+        return f"{self.content} - {"Done" if self.is_done else "Not Done"}"

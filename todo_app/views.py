@@ -8,7 +8,9 @@ from todo_app.models import Task, Tag
 
 class TaskListView(generic.ListView):
     model = Task
-    queryset = Task.objects.prefetch_related("tags").order_by('is_done', 'created_at')
+    queryset = Task.objects.prefetch_related("tags").order_by(
+        "is_done", "created_at"
+    )
 
 
 class TaskCreateView(generic.CreateView):
@@ -34,7 +36,7 @@ class TaskToggleButton(View):
         task = get_object_or_404(Task, pk=pk)
         task.is_done = not task.is_done
         task.save()
-        return redirect('todo_list:task-list')
+        return redirect("todo_list:task-list")
 
 
 class TagListView(generic.ListView):

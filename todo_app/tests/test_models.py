@@ -20,5 +20,6 @@ class ModelsTest(TestCase):
         tag2 = Tag.objects.create(name="Tag2")
         task.tags.set([tag1, tag2])
 
-        expected_str = f"{task.content} - {'Done' if task.is_done else 'Not Done'}"
+        expected_str = (f"{task.content} - "
+                        f"{"Done" if task.is_done else "Not Done"}")
         self.assertEqual(str(task), expected_str)
