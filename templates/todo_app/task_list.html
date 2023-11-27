@@ -19,7 +19,8 @@
           {% endif %}
         </strong>
       </p>
-      <a href="{% url 'todo_list:toggle-task-status' pk=task.id %}" class="btn {% if task.is_done %}btn-secondary{% else %}btn-success{% endif %}">
+      <a href="{% url 'todo_list:toggle-task-status' pk=task.id %}"
+         class="btn {% if task.is_done %}btn-secondary{% else %}btn-success{% endif %}">
         {% if task.is_done %}
           Undo
         {% else %}
