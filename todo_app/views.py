@@ -6,8 +6,4 @@ from todo_app.models import Task
 
 class TaskListView(generic.ListView):
     model = Task
-    queryset = Task.objects.prefetch_related("tags")
-
-    def get_queryset(self):
-        return Task.objects.order_by('is_done', 'created_at')
-
+    queryset = Task.objects.prefetch_related("tags").order_by('is_done', 'created_at')
